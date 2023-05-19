@@ -13,11 +13,11 @@ namespace YungBudaAPI.Repository {
 
 
         public Phrases GetPhrase(int id) {
-            return _context.Phrases.AsNoTracking().Where(p => p.Id == id).FirstOrDefault();
+            return  _context.Phrases.AsNoTracking().Where(p => p.Id == id).FirstOrDefault();
         }
 
-        public ICollection<Phrases> GetPhrases() {
-           return _context.Phrases.AsNoTracking().ToList();
+        public async Task<ICollection<Phrases>> GetPhrases() {
+           return await _context.Phrases.AsNoTracking().ToListAsync();
         }
 
         public Phrases GetRandomPhrase() {

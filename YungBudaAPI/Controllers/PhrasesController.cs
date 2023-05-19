@@ -22,9 +22,9 @@ namespace YungBudaAPI.Controllers {
 
 
         [HttpGet]
-        public ActionResult<IEnumerable<Phrases>> GetAll() {
+        public async Task<IActionResult> GetPhrases() {
             try {
-                var phrasesDto = _mapper.Map<List<PhraseDto>>(_phraseRepository.GetPhrases());
+                var phrasesDto = _mapper.Map<List<PhraseDto>>(await _phraseRepository.GetPhrases());
                 if(phrasesDto is null) {
                     return NotFound("Items not found");
                 }
@@ -38,7 +38,7 @@ namespace YungBudaAPI.Controllers {
 
         [HttpGet("{id:int}")]
 
-        public ActionResult<IEnumerable<Phrases>> GetPhraseById(int id) {
+        public IActionResult GetPhrase(int id) {
             try {
                 var phraseDto = _mapper.Map<PhraseDto>(_phraseRepository.GetPhrase(id));
                 if (phraseDto is null) {
@@ -56,7 +56,7 @@ namespace YungBudaAPI.Controllers {
 
 
         [HttpGet("randomPhrase")]
-        public ActionResult<IEnumerable<Phrases>> RandomPhrase() {
+        public IActionResult GetRandomPhrase() {
             try {
 
                 var randomPhraseDto = _mapper.Map<PhraseDto>(_phraseRepository.GetRandomPhrase());

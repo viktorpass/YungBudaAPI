@@ -3,7 +3,7 @@
 namespace YungBudaAPI.Interfaces {
     public interface IPhraseRepository {
 
-        ICollection<Phrases> GetPhrases();
+        Task<ICollection<Phrases>> GetPhrases();
 
         Phrases GetPhrase(int id);
 
